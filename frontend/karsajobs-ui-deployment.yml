@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  karsajobs-front
+  # labels:
+  #   app:  karsajobs-front
+  #   # tier: frontend
+spec:
+  selector:
+    matchLabels:
+      app: karsajobs-front
+      # tier: frontend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app:  karsajobs-front
+        # tier: frontend
+    spec:
+      containers:
+      - name:  karsajobs-front
+        image:  ronalyulyanto/karsajobs-ui:latest
+        # resources:
+        #   requests:
+        #     memory: "128Mi" # 128Mi = 128 mebibytes
+        #     cpu: "500m"     # 500m = 500 milliCPUs (1/2 CPU)
+        #   limits:
+        #     memory: "128Mi"
+        #     cpu: "500m"
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort:  8000
+        env:
+        - name: VUE_APP_BACKEND
+          value: "http://127.0.0.1:38703"

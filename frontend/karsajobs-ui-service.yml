@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: karsajobs-front
+  labels:
+    app: karsajobs-front
+    # tier: frontend
+spec:
+  selector:
+    app: karsajobs-front
+    # tier: frontend
+  type: NodePort
+  ports:
+  - port: 8000
+    nodePort: 30101
